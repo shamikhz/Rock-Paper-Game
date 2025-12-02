@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Rock-Paper-Scissors | Learning Opponent</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="game-header">
+            <h1>🤖 AI Rock-Paper-Scissors</h1>
+            <p class="subtitle">The AI learns your patterns and adapts!</p>
+        </header>
+
+        <!-- Main Game Area -->
+        <div class="game-grid">
+            <!-- Left Column: Game Controls -->
+            <div class="game-section">
+                <div class="card">
+                    <h2>Make Your Move</h2>
+                    <div class="move-buttons">
+                        <button id="rock-btn" class="move-btn" data-move="rock">
+                            <span class="move-icon">🪨</span>
+                            <span class="move-label">Rock</span>
+                        </button>
+                        <button id="paper-btn" class="move-btn" data-move="paper">
+                            <span class="move-icon">📄</span>
+                            <span class="move-label">Paper</span>
+                        </button>
+                        <button id="scissors-btn" class="move-btn" data-move="scissors">
+                            <span class="move-icon">✂️</span>
+                            <span class="move-label">Scissors</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Current Round Display -->
+                <div class="card">
+                    <h2>Current Round</h2>
+                    <div class="round-display">
+                        <div class="player-display">
+                            <div class="move-display" id="player-move">❓</div>
+                            <p>You</p>
+                        </div>
+                        <div class="vs-divider">VS</div>
+                        <div class="ai-display">
+                            <div class="move-display" id="ai-move">❓</div>
+                            <p>AI</p>
+                        </div>
+                    </div>
+                    <div class="result-container">
+                        <h3 id="result-text">Make your move!</h3>
+                    </div>
+                </div>
+
+                <!-- AI Confidence Meter -->
+                <div class="card">
+                    <h2>AI Prediction Confidence</h2>
+                    <div class="confidence-container">
+                        <div class="confidence-bar-bg">
+                            <div class="confidence-bar" id="confidence-bar"></div>
+                        </div>
+                        <p class="confidence-label" id="confidence-value">0%</p>
+                    </div>
+                    <p class="info-text">Higher confidence = AI thinks it knows your next move</p>
+                </div>
+            </div>
+
+            <!-- Right Column: Statistics & Visualizations -->
+            <div class="stats-section">
+                <!-- Score Card -->
+                <div class="card">
+                    <h2>Score</h2>
+                    <div class="score-grid">
+                        <div class="score-item">
+                            <div class="score-value" id="player-score">0</div>
+                            <div class="score-label">Your Wins</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-value" id="ai-score">0</div>
+                            <div class="score-label">AI Wins</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-value" id="draw-count">0</div>
+                            <div class="score-label">Draws</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-value" id="total-games">0</div>
+                            <div class="score-label">Total Games</div>
+                        </div>
+                    </div>
+                    <button id="reset-btn" class="reset-btn">🔄 Reset Game</button>
+                </div>
+
+                <!-- Player Tendencies Chart -->
+                <div class="card">
+                    <h2>Your Playing Patterns</h2>
+                    <div class="chart-container">
+                        <canvas id="tendency-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- AI Learning Progress - HIDDEN -->
+                <div class="card" style="display: none;">
+                    <h2>AI Learning Progress</h2>
+                    <div class="chart-container">
+                        <canvas id="winrate-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent History - HIDDEN -->
+                <div class="card" style="display: none;">
+                    <h2>Recent History</h2>
+                    <div class="history-container" id="history-moves">
+                        <p class="no-history">No moves yet...</p>
+                    </div>
+                </div>
+
+                <!-- Markov Chain Matrix - HIDDEN -->
+                <div class="card" style="display: none;">
+                    <h2>Markov Transition Matrix</h2>
+                    <p class="info-text">Probability of your next move based on last move</p>
+                    <div id="markov-matrix"></div>
+                </div>
+
+                <!-- Detected Patterns - HIDDEN -->
+                <div class="card" style="display: none;">
+                    <h2>Detected Patterns</h2>
+                    <p class="info-text">Your most common move sequences</p>
+                    <div id="patterns-list">
+                        <p class="no-patterns">No patterns detected yet...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Info -->
+        <footer class="game-footer">
+            <p>💡 The AI uses frequency analysis, Markov chains, pattern detection, and meta-strategy to learn your
+                playing style!</p>
+        </footer>
+    </div>
+
+    <!-- Load game scripts -->
+    <script src="ai.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>
