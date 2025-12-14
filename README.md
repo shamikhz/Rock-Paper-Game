@@ -324,4 +324,4 @@ This project is open source and available for educational purposes.
 ---
 
 **Enjoy playing against an AI that actually learns!** 🎮🤖
-rok-pape.netlify.app
+[rok-pape.netlify.app](https://rok-pape.netlify.app/)
